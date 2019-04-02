@@ -2,6 +2,11 @@ package com.example.lenovo;
 
 import android.app.Notification;
 
+import com.example.lenovo.command.Broker;
+import com.example.lenovo.command.BuyStockOrder;
+import com.example.lenovo.command.Order;
+import com.example.lenovo.command.SellStockOrder;
+import com.example.lenovo.command.Stock;
 import com.example.lenovo.decorator.Car;
 import com.example.lenovo.decorator.CarDecorator;
 import com.example.lenovo.decorator.FlyCarDecorator;
@@ -63,4 +68,18 @@ public class ExampleUnitTest {
         flySwimCar.show();
     }
 
+    @Test
+    public void commandTest() {
+        Stock stock = new Stock();
+
+        Order buyStock = new BuyStockOrder(stock);
+        Order sellStock = new SellStockOrder(stock);
+
+        Broker broker = new Broker();
+        broker.takeOrder(buyStock);
+        broker.takeOrder(sellStock);
+        broker.removeOrder(buyStock);
+
+        broker.placeOrders();
+    }
 }
