@@ -2,6 +2,11 @@ package com.example.lenovo;
 
 import android.app.Notification;
 
+import com.example.lenovo.adapter.Duck;
+import com.example.lenovo.adapter.MallardDuck;
+import com.example.lenovo.adapter.Turkey;
+import com.example.lenovo.adapter.TurkeyAdapter;
+import com.example.lenovo.adapter.WildTurkey;
 import com.example.lenovo.command.Broker;
 import com.example.lenovo.command.BuyStockOrder;
 import com.example.lenovo.command.Order;
@@ -17,6 +22,9 @@ import com.example.lenovo.factory_method.BananaFactory;
 import com.example.lenovo.factory_method.Fruit;
 import com.example.lenovo.factory_method.FruitFactory;
 import com.example.lenovo.simple_factory.SimpleFactory;
+import com.example.lenovo.template.Cricket;
+import com.example.lenovo.template.Football;
+import com.example.lenovo.template.Game;
 
 import org.junit.Test;
 
@@ -82,4 +90,32 @@ public class ExampleUnitTest {
 
         broker.placeOrders();
     }
+
+    @Test
+    public void adapterTest() {
+        MallardDuck duck = new MallardDuck();
+        duck.quack();
+        duck.fly();
+        System.out.println("-----");
+
+        Turkey turkey = new WildTurkey();
+        turkey.gobble();
+        turkey.fly();
+        System.out.println("-----");
+
+        Duck turkeyAdapter = new TurkeyAdapter(turkey);
+        turkeyAdapter.quack();
+        turkeyAdapter.fly();
+    }
+
+    @Test
+    public void templateTest() {
+        Game cricket = new Cricket();
+        cricket.play();
+        System.out.println("-----");
+
+        Game football = new Football();
+        football.play();
+    }
+
 }
